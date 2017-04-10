@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+         <title>Login</title>
+  <meta charset="UTF-8">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+        <script src="bootstrap/js/bootstrap.js"></script>
+    </head>
+    <body>
+        <section>
+ 
+  <div id="message"></div>
+</section>
+        <div><form class="form-horizontal" method="GET" id="Login">
+<fieldset>
+
+<!-- Form Name -->
+<legend>formulaire</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="mail">Mail</label>  
+  <div class="col-md-4">
+  <input id="mail" name="mail" type="text" placeholder="Adresse mail" class="form-control input-md">
+  <span class="help-block">Entrez votre adresse mail</span>  
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Password">Password</label>
+  <div class="col-md-4">
+    <input id="password" name="password" type="password" placeholder="Mot de passe" class="form-control input-md">
+    <span class="help-block">Entrez votre mot de passe</span>
+  </div>
+</div>
+
+
+
+</fieldset>
+</form>
+
+
+
+
+
+            <!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Login" >Login</label>
+  <div class="col-md-8">
+    <button id="Login" name="Login" onClick="fct_Login();" class="btn btn-info">Login</button>
+
+
+
+
+
+
+
+    <button id="LoginFb" name="LoginFb" class="btn btn-info">Login Facebook</button>
+  </div>
+</div>
+            </br>
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Register">Register</label>
+  <div class="col-md-4">
+    <button id="Register" name="Register" class="btn btn-primary">Register</button>
+  </div>
+</div>
+</div>
+    
+<script>
+
+    function fct_Login() {
+    $.ajax({
+      type: "GET",
+      url: 'ws/login.php',
+      data: $('form').serialize(),
+      dataType: 'json',
+      success: function(data) {
+       if(data.rep == "true" )
+                        {
+                        alert(' You are successfully log in .. ' );
+                        document.location.href="Registration.html";
+                        }
+
+          else if( data.rep == "false" )
+                            {
+                            alert('please enter a correct email & password');
+                            }
+          },
+            error: function(data){
+                
+            alert("erreur json");
+      }
+          
+        });
+    };
+
+  
+
+</script>
+</body>
+</html>
